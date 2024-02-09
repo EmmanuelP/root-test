@@ -48,7 +48,7 @@ void customContextMenu()
                           "test no 1","poptest1",0,"int,int");
    l->AddFirst(n);
    n = new TClassMenuItem(TClassMenuItem::kPopupUserFunction,cl,
-			  "Zoom ALL X as last","URZoomAllXAsLast",0,"TObject*",2);
+			  "Zoom ALL X as last","URZoomAllXAsLastProxy",0,"TObject*",2);
    l->AddFirst(n);
 }
 
@@ -57,6 +57,8 @@ main (int argc, char **argv)
 {
 	TApplication app("app", &argc, argv);
 	TCanvas* c = new TCanvas("c", "Something", 0, 0, 800, 600);
+
+	gInterpreter->Declare("void URZoomAllXAsLast(TObject *objaxis);\nvoid URZoomAllXAsLastProxy(TObject *objaxis) {URZoomAllXAsLast(objaxis);}");
 
 	customContextMenu();
 
