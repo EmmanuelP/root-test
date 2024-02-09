@@ -58,6 +58,8 @@ main (int argc, char **argv)
 	TApplication app("app", &argc, argv);
 	TCanvas* c = new TCanvas("c", "Something", 0, 0, 800, 600);
 
+	gInterpreter->Declare("#include <" CALLBACKS_H ">");
+
 	customContextMenu();
 
 	TRootCanvas *rc = (TRootCanvas *)c->GetCanvasImp();

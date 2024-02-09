@@ -25,5 +25,15 @@ files=dict_gen.process ('callbacks.h', extra_args: 'callbacksLinkDef.h')
 custom_target('callbackspcm', input: files, output: 'callbacksDict_rdict.pcm', command: ['cp', '@INPUT1@', '@OUTPUT@'], install: true, install_dir: get_option('libdir'))
 dict_files+=files
 
+library_include_dir = get_option ('includedir') / 'root-test'
+install_headers('callbacks.h', install_dir: library_include_dir)
+
 test_lib=library('testlib', dict_files + 'callbacks.cc', dependencies: root_dep, install: true)
-test_app=executable('testapp', 'test.cc', dependencies: root_dep, link_with: test_lib, install: true)
+test_app=executable(
+  'testapp', 'test.cc',
+  dependencies: root_dep,
+  link_with: test_lib,
+  install: true,
+  cpp_args: ['-DCALLBACKS_H="'+ get_option('prefix') / library_include_dir / 'callbacks.h'+'"']
+)
+
