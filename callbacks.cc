@@ -1,4 +1,5 @@
 #include <callbacks.h>
+#include "TH1.h"
 
 void poptest1(int a, int b)
 {

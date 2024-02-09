@@ -1,4 +1,10 @@
 #include <callbacks.h>
+#include "TCanvas.h"
+#include "TApplication.h"
+#include "TClass.h"
+#include "TClassMenuItem.h"
+#include "TH1.h"
+#include "TRootCanvas.h"
 
 void customContextMenu()
 {
